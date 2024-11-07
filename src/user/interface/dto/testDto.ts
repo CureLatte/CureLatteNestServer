@@ -1,3 +1,3 @@
 export default class TestDto {
-  ok: string;
+	ok: string;
 }
