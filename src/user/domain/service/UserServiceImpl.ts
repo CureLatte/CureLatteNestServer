@@ -8,10 +8,16 @@ export default class UserServiceImpl implements UserService {
 	@Inject('UserRepository')
 	userRepository: UserRepository;
 
-	getUser(id: number): User {
-		throw new Error('Method not implemented.');
+	async getUser(id: number): Promise<User> {
+		const user: User = await this.userRepository.get(id);
+
+		if (!user) {
+			throw new Error('UserDoesNotExist');
+		}
+
+		return user;
 	}
-	createUser(user: User): User {
+	async createUser(user: User): Promise<User> {
 		throw new Error('Method not implemented.');
 	}
 }

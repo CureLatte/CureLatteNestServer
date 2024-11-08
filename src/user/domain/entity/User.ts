@@ -1,9 +1,12 @@
-export default class User {
-	id: number;
+import CommonEntity from '../../../common/entity/CommonEntity';
+
+export default class User extends CommonEntity {
 	email: string;
 	nickName: string;
 
-	createAt: Date;
-	updateAt: Date;
-	deleteAt: Date;
+	constructor(input: any) {
+		super(input);
+		this.email = input.email;
+		this.nickName = input.nickName;
+	}
 }

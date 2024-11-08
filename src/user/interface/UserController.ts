@@ -20,7 +20,10 @@ class UserController {
 	}
 
 	@Post()
-	public createUser(@Req() req: Request, @Res() res: Response): Response {
+	public async createUser(
+		@Req() req: Request,
+		@Res() res: Response,
+	): Promise<Response> {
 		console.log(req.body);
 
 		return res.status(HttpStatus.OK).json({
@@ -29,10 +32,10 @@ class UserController {
 	}
 
 	@Get()
-	public getQueryTest(
+	public async getQueryTest(
 		@Query('testQuery') testQuery: string,
 		@Res() res: Response,
-	) {
+	): Promise<Response> {
 		return res.status(HttpStatus.OK).json({
 			query: testQuery,
 		});
