@@ -27,4 +27,4 @@ COPY ./package.json ./
 COPY ./node_modules ./node_modules
 
 # CMD ["ls"]
-CMD ["node", "/app/dist/server.js"]
+CMD ["npm", "run", "start"]
