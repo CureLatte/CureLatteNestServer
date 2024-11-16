@@ -5,11 +5,11 @@ WORKDIR /app
 EXPOSE 8888
 
 # apt update
-RUN ["apt-get", "update"]
+RUN ["apt-get", "update", "-y"]
 
-RUN ["apt-get", "upgrade"]
+RUN ["apt-get", "upgrade", "-y"]
 
-RUN ["apt-get", "install", "net-tools"]
+RUN ["apt-get", "install", "net-tools" , "-y"]
 
 
 RUN ["ls"]
