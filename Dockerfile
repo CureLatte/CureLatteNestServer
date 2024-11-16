@@ -20,11 +20,18 @@ COPY ./dist ./dist
 
 # COPY package.json
 COPY ./package.json ./
+
+COPY ./tsconfig.json ./
+
+COPY ./nest-cli.json ./
+
 # node modules 설치
 # RUN ["yarn", "install"]
 
 # node module copy
 COPY ./node_modules ./node_modules
+
+
 
 # CMD ["ls"]
 CMD ["npm", "run", "start"]
