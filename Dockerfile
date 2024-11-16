@@ -34,4 +34,5 @@ COPY ./node_modules ./node_modules
 
 
 # CMD ["ls", "dist"]
-CMD ["npm", "run", "start"]
+# CMD ["npm", "run", "start"]
+CMD ["node", "./dist/main.js"]
