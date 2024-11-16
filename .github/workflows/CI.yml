@@ -1,0 +1,62 @@
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build:
+    name: 'server build'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 20.16
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: cache-modules
+        with:
+          path: node_modules
+          key: npm-packages-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install
+
+      - name: build
+        run: npm run build
+
+      # build cache
+      #      - name: Cache build File
+      #        uses: actions/cache@v2
+      #        id: cache-build
+      #        with:
+      #          path: dist
+      #          key: buildFile
+
+      #      - name: test
+      #        run: npm run test
+
+      - name: check files
+        run: ls
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: docker
+        uses: docker/build-push-action@v2
+        with:
+          file: ./Dockerfile
+          platforms: linux/amd64
+          tags: ${{secrets.DOCKERHUB_TAG}}
+          push: true
+          context: .
+          no-cache: true

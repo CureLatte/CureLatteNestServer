@@ -30,16 +30,6 @@ class UserController {
 			ok: 'userId',
 		});
 	}
-
-	@Get()
-	public async getQueryTest(
-		@Query('testQuery') testQuery: string,
-		@Res() res: Response,
-	): Promise<Response> {
-		return res.status(HttpStatus.OK).json({
-			query: testQuery,
-		});
-	}
 }
 
 export default UserController;
