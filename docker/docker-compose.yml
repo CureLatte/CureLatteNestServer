@@ -1,14 +1,22 @@
 
 
 services:
-  dataBase:
-    container_name: "Portfolio_DataBase"
-    image: mysql:8
-    ports:
-      - "3305:3306"
-    environment:
-      TZ: Asia/Seoul
-      MYSQL_ROOT_PASSWORD: 12341234
-      MYSQL_DATABASE: portfolio
+#  dataBase:
+#    container_name: "Portfolio_DataBase"
+#    image: mysql:8
+#    ports:
+#      - "3305:3306"
+#    environment:
+#      TZ: Asia/Seoul
+#      MYSQL_ROOT_PASSWORD: 12341234
+#      MYSQL_DATABASE: portfolio
+#
+#    restart: always
 
-    restart: always
+  app:
+    container_name: "nestServer"
+    image: "curelatte/curelatte:nestServer"
+    ports:
+      - "8888:8888"
+    env_file:
+        - .env
