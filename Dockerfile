@@ -33,5 +33,5 @@ COPY ./node_modules ./node_modules
 
 
 
-CMD ["ls"]
+CMD ["ls", "dist"]
 # CMD ["npm", "run", "start"]
